@@ -22,7 +22,7 @@ int64_t hook(int64_t reserved ) {
         else
         {
             trace_num(SBUF("Invalid Signature"), flag);
-            rollback("Invalid Signature", 17, 60);
+            rollback(SBUF("Invalid Signature"), 60);
         }
     }
 
@@ -35,7 +35,7 @@ int64_t hook(int64_t reserved ) {
         else
         {
             trace_num(SBUF("Invalid Signature"), flag);
-           // rollback("Invalid Signature", 17, 60);
+           // rollback(SBUF("Invalid Signature"), 60);
         }
     }
 
@@ -50,7 +50,7 @@ int64_t hook(int64_t reserved ) {
         else
         {
             trace_num(SBUF("Invalid Signature"), flag);
-//            rollback("Invalid Signature", 17, 60);
+//            rollback(SBUF("Invalid Signature"), 60);
         }
     }
 

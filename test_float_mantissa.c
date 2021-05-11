@@ -22,7 +22,7 @@ int64_t hook(int64_t reserved ) {
 
     // Test case 2:  Fetching mantissa of a XFL enclosing number.
     {
-        int64_t result = float_mantissa(float_set(6, 123456789));
+        int64_t result = float_mantissa(float_set(5, 123456789));
         trace_num(SBUF("Testcase2: result"), result);
         ASSERT(result == 1234567890000000); // Expected 1234567890000000
     }

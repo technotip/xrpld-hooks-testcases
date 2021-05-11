@@ -44,19 +44,36 @@ int64_t hook(int64_t reserved ) {
         ASSERT( result == 5000 ); // Expected result: 5000.
     }
 
-    // Test case 5:  Absolute value: 0
+    // Test case 5:  CANT_RETURN_NEGATIVE
     {
-        int64_t result = float_int( float_negate(float_set(-15, 5000000000000000)), 3, 0 ); // Last parameter(1) converts any negative value to positive.
-       trace_float(SBUF("Testcase5:"), result);
-        ASSERT( result == -5000 ); // Expected result: -5000.
+        int64_t result = float_int( float_negate(float_set(-15, 5000000000000000)), 3, 0 ); // We are using float_negate() to get negative XFL, which is not allowed in float_int().
+     
+        trace_num(SBUF("testcase5: "), result);
+        ASSERT( result == -33 ); // Expected result: -33.
     }
 
     // Test case 6:  INVALID_FLOAT 
     {
         int64_t result = float_int( 1, 3, 0 ); // First parameter must be valid XFL number.
-       trace_num(SBUF("Testcase5:"), result);
-      //  ASSERT( result == -5000 ); // Expected result: -5000.
+        trace_num(SBUF("Testcase6:"), result);
+        ASSERT( result == -10024 ); // Expected result: --10024.
     }    
+
+    // Test case 7:  VALID INPUT & OUTPUT
+    {
+        int64_t result = float_int( float_set(1, 1), 3,  0); // 10 x 10 ^ 3 = 10000.
+
+	trace_num(SBUF("Testcase7:"), result);
+        ASSERT( result == 10000 ); // Expected result: 1 x 10^1 = 10 x 10 ^ 3 = 10000.
+    }    
+
+    // Test case 8:  INVALID_ARGUMENT
+    {
+        int64_t result = float_int( float_set(1, 1), 81,  0); // Observe 2nd parameter. An exponent must be in the range -96 to 80.
+
+        trace_num(SBUF("Testcase8:"), result);
+        ASSERT( result == -7 ); // Expected result: -7, which represents INVALID_ARGUMENT.
+    }     
 
     accept (0,0,0); 
 
