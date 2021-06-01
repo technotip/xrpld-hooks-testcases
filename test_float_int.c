@@ -75,6 +75,22 @@ int64_t hook(int64_t reserved ) {
         ASSERT( result == -7 ); // Expected result: -7, which represents INVALID_ARGUMENT.
     }     
 
+    // Test case 9:  Similar condition has been reported https://github.com/XRPL-Labs/xrpld-hooks/issues/5
+    {
+	int64_t result = float_int(float_set(10 ,14), 0, 0);
+
+        trace_num(SBUF("Testcase9:"), result);
+        ASSERT( result == 0 ); // Results in [TimeoutError()] constion. Returns 0.
+    }    
+
+    // Test case 10:  Similar condition has been reported https://github.com/XRPL-Labs/xrpld-hooks/issues/5
+    {
+        int64_t result = float_int(float_set(11 , 1), 0, 0);
+
+        trace_num(SBUF("Testcase10:"), result);
+        ASSERT( result == 0 ); // Results in [TimeoutError()] constion. Returns 0.
+    }    
+
     accept (0,0,0); 
 
     _g(1,1);   // every hook needs to import guard function and use it at least once

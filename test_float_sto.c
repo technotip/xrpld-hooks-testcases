@@ -26,11 +26,13 @@ int64_t hook(int64_t reserved ) {
 
     // Test case 1: Serialize currency code, hook a/c, amount. 
     {
-       uint8_t amt_out[48];
-       if(float_sto(SBUF(amt_out), SBUF(currency), SBUF(hook_acc_id), float_set(0, 5), 0) < 0)
-        rollback(SBUF("Testcase1"), 1);
+       uint8_t amt_out[8];
+       int64_t result = float_sto(SBUF(amt_out), SBUF(currency), SBUF(hook_acc_id), float_set(9, 5), 0);
+//       if(float_sto(SBUF(amt_out), SBUF(currency), SBUF(hook_acc_id), float_set(0, 5), 0) < 0)
+//        rollback(SBUF("Testcase1"), 1);
     
        trace(SBUF("Testcase1: Serialized: "), SBUF(amt_out), 1);
+       trace_num(SBUF("Testcase1: result "), result);
     }
 
     //Test case 2: INVALID_FLOAT

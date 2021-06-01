@@ -1,0 +1,52 @@
+/*
+ * state_foreign
+ * Retrieve the data pointed to, on another account, by a Hook State key and write it to an output buffer.
+*/
+
+#include "../hookapi.h"
+#include "../testmacro.h"
+
+#define BLACKLIST_ACCOUNT "rJgNWCdPrhNqFL6QSTNUB39WYydQ3frMQp"
+
+/*
+ int64_t state_foreign (
+    uint32_t write_ptr,
+    uint32_t write_len,
+    uint32_t kread_ptr,
+    uint32_t kread_len,
+    uint32_t aread_ptr,
+    uint32_t aread_len  
+ );
+*/
+
+int64_t cbak(int64_t reserved) { 
+    return 0;
+}
+
+int64_t hook(int64_t reserved ) {
+
+    // Test case 1:
+    {
+        uint8_t key[32] = {0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x01U};
+		uint8_t blacklist_accid[20];
+		uint8_t blacklist_status[8];
+
+		util_accid(SBUF(blacklist_accid), SBUF(BLACKLIST_ACCOUNT));
+ 
+		int64_t lookup =  state_foreign(SBUF(blacklist_status), SBUF(key), SBUF(blacklist_accid));
+                if (lookup < 0)
+		{
+			trace_num(SBUF("Lookup value:"), lookup);
+		     rollback(SBUF("Error: could not find key on foreign state."), 1);		
+		}
+		trace(SBUF("Foreign key state"), SBUF(blacklist_status), 1);
+    }     
+
+    accept (0,0,0); 
+
+    _g(1,1);   // every hook needs to import guard function and use it at least once
+    // unreachable
+    return 0;
+
+
+}

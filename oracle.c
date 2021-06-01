@@ -3,7 +3,7 @@
 
 
 // the oracle is the limit set on a trustline established between two special oracle accounts
-
+/*
 uint8_t oracle_lo[20] = { // require('ripple-address-codec').decodeAccountID('rXUMMaPpZqPutoRszR29jtC8amWq3APkx')
     0x05U, 0xb5U, 0xf4U, 0x3aU, 0xf7U,
     0x17U, 0xb8U, 0x19U, 0x48U, 0x49U, 0x1fU, 0xb7U, 0x07U, 0x9eU, 0x4fU, 0x17U, 0x3fU, 0x4eU, 0xceU, 0xb3U};
@@ -11,6 +11,15 @@ uint8_t oracle_lo[20] = { // require('ripple-address-codec').decodeAccountID('rX
 uint8_t oracle_hi[20] = { // require('ripple-address-codec').decodeAccountID('r9PfV3sQpKLWxccdg3HL2FXKxGW2orAcLE')
     0x5bU, 0xefU, 0x92U, 0x1aU, 0x21U,
     0x7dU, 0x57U, 0xfdU, 0xa5U, 0xb5U, 0x6dU, 0x5bU, 0x40U, 0xbeU, 0xe4U, 0x0dU, 0x1aU, 0xc1U, 0x12U, 0x7fU};
+*/
+
+uint8_t oracle_lo[20] = { // require('ripple-address-codec').decodeAccountID('rXUMMaPpZqPutoRszR29jtC8amWq3APkx')
+0xB6U,0x75U,0xB3U,0xDEU,0x01U,0x0AU,0x7CU,0x7AU,0x2DU,0xF6U,0x55U,0xC5U,0x4CU,0x28U,0x4AU,0x21U,0x13U,0xFFU,0xD7U,0x6BU   
+};
+
+uint8_t oracle_hi[20] = { // require('ripple-address-codec').decodeAccountID('r9PfV3sQpKLWxccdg3HL2FXKxGW2orAcLE')
+0x24U,0xB3U,0x74U,0xEFU,0xE4U,0x4FU,0xC5U,0x72U,0xEDU,0x6EU,0x4DU,0xC1U,0x12U,0x77U,0x2CU,0x26U,0xBFU,0x75U,0x43U,0x51U
+};
 
 int64_t cbak(int64_t reserved)
 {   
@@ -20,7 +29,7 @@ int64_t cbak(int64_t reserved)
 int64_t hook(int64_t reserved)
 {
     //    etxn_reserve(1);
-    uint8_t currency[20] = {0,0,0,0, 0,0,0,0, 0,0,0,0, 'C', 'S', 'C', 0,0,0,0,0};
+    uint8_t currency[20] = {0,0,0,0, 0,0,0,0, 0,0,0,0, 'X', 'T', 'P', 0,0,0,0,0};
     uint8_t keylet[34];
 
    // CLEARBUF(keylet);

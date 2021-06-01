@@ -22,7 +22,7 @@ api.connect().then(() => {
         TransactionType: "Payment",
         Amount: "" + amount,
         Destination: dest,
-        Fee: "10000"
+        Fee: "100"
     }
     api.prepareTransaction(j).then((x)=>
     {

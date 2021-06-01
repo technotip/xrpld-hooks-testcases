@@ -135,103 +135,17 @@ uint8_t oracle_hi[20] = { // require('ripple-address-codec').decodeAccountID('r9
         ASSERT( result == 34 ); // Expected: 34. 34 bytes written into butter referenced by keylet.
     }    
 */
+    // Test case 6:  KEYLET_CHILD
+    {
+    }
 
-   // Test case 6: KEYLET_SKIP
+   // Test case 7: KEYLET_SKIP
    {
 	uint8_t keylet[34];
-	int64_t result = util_keylet(SBUF(keylet), KEYLET_SKIP, 0, 0, 0, 0, 0, 0);	
+	int64_t result = util_keylet(SBUF(keylet), KEYLET_SKIP, SBUF("1089494"), 0, 0, 0, 0);	
 
-	trace(SBUF("Testcase6: KEYLET_SKIP"), SBUF(keylet), 1);
-
-	ASSERT( result == 34 );
-   }   
-
-   // Test case 7: KEYLET_FEES
-   {
-	   uint8_t keylet[34];
-	   int64_t result = util_keylet(SBUF(keylet), KEYLET_FEES, 0, 0, 0, 0, 0, 0);
-
-	   trace(SBUF("Testcase7: KEYLET_FEES"), SBUF(keylet), 1);
-
-	   ASSERT( result == 34 );
+	trace(SBUF("Testcase7: KEYLET_SKIP"), SBUF(keylet), 1);
    }
-
-/*
-  
-   // Test case 8: KEYLET_NEGATIVE_UNL
-   {
-	   uint8_t keylet[34];
-	   int64_t result = util_keylet(SBUF(keylet), KEYLET_NEGATIVE_UNL, 0, 0, 0, 0, 0, 0);
-
-	   trace(SBUF("Testcase 8: KEYLET_NEGATIVE_UNL"), SBUF(keylet), 1);
-
-	   ASSERT( result == 34 );
-   }
-
-   //Test case 9: KEYLET_OFFER  // Yet to test this case!
-   {
-	   uint8_t keylet[34];
-	   uint32_t num = 555;
-	   int64_t result = util_keylet(SBUF(keylet), KEYLET_OFFER, SBUF(otxn_accid), num, 0, 0, 0);
-
-	   trace(SBUF("Testcase 9: KEYLET_OFFER"), SBUF(keylet), 1);
-
-	   ASSERT( result == 34 );
-   }
-
-   //Test case 10: KEYLET_QUALITY // Yet to test this case!
-   {     
-           uint8_t keylet[34];
-           
-           int64_t result = util_keylet(SBUF(keylet), KEYLET_QUALITY, SBUF(keylet7), 32_bits_hi, 32_bits_lo, 0, 0);
-      
-           trace(SBUF("Testcase 10: KEYLET_QUALITY"), SBUF(keylet), 1);
-
-           ASSERT( result == 34 );
-   }   
-   
-   //Test case 11: KEYLET_EMITTED_DIR
-   {
-	   uint8_t keylet[34];
-	   int64_t result = util_keylet(SBUF(keylet), KEYLET_EMITTED_DIR, 0, 0, 0, 0, 0, 0);
-
-	   trace(SBUF("Testcase 11: KEYLET_EMITTED_DIR"), SBUF(keylet), 1);
-
-	   ASSERT( result == 34);
-   }
-*/   
-   //Test case 12: KEYLET_SIGNERS 
-   {    
-           uint8_t keylet[34];
-           int64_t result = util_keylet(SBUF(keylet), KEYLET_SIGNERS, SBUF(otxn_accid), 0, 0, 0, 0);
-      
-           trace(SBUF("Testcase 12: KEYLET_SIGNERS"), SBUF(keylet), 1);
-
-           ASSERT( result == 34); 
-   }
-
-   //Test case 13: KEYLET_OWNER_DIR
-   {
-	   uint8_t keylet[34];
-           int64_t result = util_keylet(SBUF(keylet), KEYLET_OWNER_DIR, SBUF(otxn_accid), 0, 0, 0, 0);
-	   trace( SBUF("Testcase 13: KEYLET_OWNER_DIR"), SBUF(keylet), 1);
-
-	   trace_num(SBUF("Testcase 13: result"), result);
-
-	   ASSERT( result == 34 );
-   }   
-
-   //Test case 14: KEYLET_OWNER_DIR: OUT_OF_BOUNDS
-   {
-           uint8_t keylet[34];
-           int64_t result = util_keylet(SBUF(keylet), KEYLET_OWNER_DIR, (otxn_accid), 99999, 0, 0, 0, 0);
-           trace( SBUF("Testcase 14: KEYLET_OWNER_DIR"), SBUF(keylet), 1);
-
-           trace_num(SBUF("Testcase 14: result"), result);
-
-           ASSERT( result ==  -1 ); //OUT_OF_BOUNDS
-   }
-
 
     accept (0,0,0); 
 
